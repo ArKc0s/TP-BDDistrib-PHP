@@ -29,16 +29,30 @@ class Groupe
         return $this->m->listindexes('groupes');
     }
 
-    public function createGroupe(string $numero_groupe, string $nom, Ville $ville)
+    public function createGroupe(string $numero_groupe, string $nom, string $ville_id)
     {
-        $this->m->insertOne('groupes', ['numero_groupe' => $numero_groupe, 'nom' => $nom, 'ville' => $ville]);
+        $this->m->insertOne('groupes', ['numero_groupe' => $numero_groupe, 'nom' => $nom, 'ville_id' => $ville_id]);
     }
 
+    /**
+     * @param array $where
+     * @param array $options
+     * @param array $select
+     * @return mixed
+     * @throws \Exception
+     */
     public function getList(array $where = [], array $options = [], array $select = [])
     {
         return $this->m->options($options)->select($select)->where($where)->find('groupes')->toArray();
     }
 
+    /**
+     * @param array $where
+     * @param array $options
+     * @param array $select
+     * @return mixed
+     * @throws \Exception
+     */
     public function getOne(array $where = [], array $options = [], array $select = [])
     {
         return $this->m->options($options)->select($select)->where($where)->findOne('groupes');
