@@ -1,35 +1,46 @@
 <?php
 
 namespace App\Models;
+use ci4mongodblibrary\Libraries\Mongo;
 
-use CodeIgniter\Model;
 
-class Ville extends Model
+class Ville
 {
-    protected $table            = 'villes';
-    protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
-    protected $allowedFields    = ['nom', 'code_postal'];
+    /*
+    * @var Mongo
+     */
+    protected $m;
 
-    // Dates
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->m = new Mongo();
+    }
 
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
+    /**
+     * @param string $collection
+     * @return mixed
+     */
 
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    public function getIndexes()
+    {
+        return $this->m->listindexes('groupes');
+    }
+
+    public function createVille(string $nom, int $code_postal)
+    {
+        $this->m->insertOne('villes', ['nom' => $nom, 'code_postal' => $code_postal]);
+    }
+
+    public function getList(array $where = [], array $options = [], array $select = [])
+    {
+        return $this->m->options($options)->select($select)->where($where)->find('villes')->toArray();
+    }
+
+    public function getOne(array $where = [], array $options = [], array $select = [])
+    {
+        return $this->m->options($options)->select($select)->where($where)->findOne('villes');
+    }
 }
