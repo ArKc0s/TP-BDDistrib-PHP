@@ -1,40 +1,54 @@
 <?php
 
 namespace App\Models;
+use ci4mongodblibrary\Libraries\Mongo;
 
-use CodeIgniter\Model;
-
-class Matériel extends Model
+class Materiel
 {
-    protected $table            = 'matériels';
-    protected $primaryKey       = 'id_matériel';
-    protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
-    protected $allowedFields    = ['id_groupe','numéro_de_série','marque','modèle','type','prix'];
+    /*
+    * @var Mongo
+     */
+    protected $m;
 
-    // Dates
-    protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->m = new Mongo();
+    }
 
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
+    /**
+     * @return mixed
+     */
+    public function getIndexes()
+    {
+        return $this->m->listindexes($materials);
+    }
 
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    /**
+     * @param array $credentials
+     * @return mixed
+     */
+    public function createOneItem(array $credentials)
+    {
+        return $this->m->insertOne($materials, $credentials);
+    }
+
+    /**
+     * @param array $where
+     * @param array $options
+     * @param array $select
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getList( array $where = [], array $options = [], array $select = [])
+    {
+        return $this->m->options($options)->select($select)->where($where)->find($materials)->toArray();
+    }
+
+    public function getOne( array $where = [], array $options = [], array $select = [])
+    {
+        return $this->m->options($options)->select($select)->where($where)->findOne($materials);
+    }
 }

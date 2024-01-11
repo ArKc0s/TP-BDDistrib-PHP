@@ -1,40 +1,54 @@
 <?php
 
 namespace App\Models;
+use ci4mongodblibrary\Libraries\Mongo;
 
-use CodeIgniter\Model;
-
-class Membre extends Model
+class Membre
 {
-    protected $table            = 'membres';
-    protected $primaryKey       = 'id_membre';
-    protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
-    protected $allowedFields    = ['numéro_groupe','nom','prénom','adresse','email','actif','mot_de_passe'];
+    /*
+    * @var Mongo
+     */
+    protected $m;
 
-    // Dates
-    protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->m = new Mongo();
+    }
 
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
+    /**
+     * @return mixed
+     */
+    public function getIndexes()
+    {
+        return $this->m->listindexes($membres);
+    }
 
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    /**
+     * @param array $credentials
+     * @return mixed
+     */
+    public function createOneItem(array $credentials)
+    {
+        return $this->m->insertOne($membres, $credentials);
+    }
+
+    /**
+     * @param array $where
+     * @param array $options
+     * @param array $select
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getList( array $where = [], array $options = [], array $select = [])
+    {
+        return $this->m->options($options)->select($select)->where($where)->find($membres)->toArray();
+    }
+
+    public function getOne( array $where = [], array $options = [], array $select = [])
+    {
+        return $this->m->options($options)->select($select)->where($where)->findOne($membres);
+    }
 }

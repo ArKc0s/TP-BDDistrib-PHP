@@ -1,40 +1,54 @@
 <?php
 
 namespace App\Models;
+use ci4mongodblibrary\Libraries\Mongo;
 
-use CodeIgniter\Model;
-
-class Commande extends Model
+class Commande
 {
-    protected $table            = 'commandes';
-    protected $primaryKey       = 'id_commande';
-    protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
-    protected $allowedFields    = ['id_membre_client','id_membre_actif','date','list','prix_total'];
+    /*
+    * @var Mongo
+     */
+    protected $m;
 
-    // Dates
-    protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->m = new Mongo();
+    }
 
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
+    /**
+     * @return mixed
+     */
+    public function getIndexes()
+    {
+        return $this->m->listindexes($commandes);
+    }
 
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    /**
+     * @param array $credentials
+     * @return mixed
+     */
+    public function createOneItem(array $credentials)
+    {
+        return $this->m->insertOne($commandes, $credentials);
+    }
+
+    /**
+     * @param array $where
+     * @param array $options
+     * @param array $select
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getList( array $where = [], array $options = [], array $select = [])
+    {
+        return $this->m->options($options)->select($select)->where($where)->find($commandes)->toArray();
+    }
+
+    public function getOne( array $where = [], array $options = [], array $select = [])
+    {
+        return $this->m->options($options)->select($select)->where($where)->findOne($commandes);
+    }
 }
