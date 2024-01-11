@@ -4,8 +4,52 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "42ba82b49044e3865a95c733aad14b40",
+    "content-hash": "b5aff7fc0be7852c8d722458c4149359",
     "packages": [
+        {
+            "name": "bertugfahriozer/ci4mongodblibrary",
+            "version": "1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bertugfahriozer/ci4mongodblibrary.git",
+                "reference": "0ccaee3db458db776c6a285939f74d479cf5dcc2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bertugfahriozer/ci4mongodblibrary/zipball/0ccaee3db458db776c6a285939f74d479cf5dcc2",
+                "reference": "0ccaee3db458db776c6a285939f74d479cf5dcc2",
+                "shasum": ""
+            },
+            "require": {
+                "mongodb/mongodb": "^1.8",
+                "php": "^7.3||^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ci4mongodblibrary\\": "app/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bertuğ Fahri ÖZER",
+                    "email": "bertugfahriozer@gmail.com",
+                    "homepage": "https://bertugfahriozer.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Codeigniter 4 MongoDB library & Common Model",
+            "support": {
+                "forum": "https://bertugfahriozer.com/",
+                "issues": "https://github.com/bertugfahriozer/ci4mongodblibrary/issues",
+                "source": "https://github.com/bertugfahriozer/ci4mongodblibrary"
+            },
+            "time": "2023-02-05T01:23:47+00:00"
+        },
         {
             "name": "codeigniter4/framework",
             "version": "v4.4.4",
@@ -2468,7 +2512,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.3"
+        "php": "^8.3",
+        "ext-mongodb": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
