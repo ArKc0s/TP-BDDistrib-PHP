@@ -27,12 +27,17 @@ class Materiel
     }
 
     /**
-     * @param array $credentials
+     * @param string $idgroupe
+     * @param string $numerodeserie
+     * @param string $marque
+     * @param string $modele
+     * @param string $type
+     * @param float $prix
      * @return mixed
      */
-    public function createOneItem(array $credentials)
+    public function createMateriel(string $idgroupe, string $numerodeserie, string $marque, string $modele, string $type, float $prix)
     {
-        return $this->m->insertOne($materials, $credentials);
+        return $this->m->insertOne("materiels", ["id_groupe" => $idgroupe, "numero_de_serie" => $numerodeserie, "marque" => $marque, "modele" => $modele, "type" => $type, "prix" => $prix]);
     }
 
     /**

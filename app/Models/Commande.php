@@ -27,12 +27,16 @@ class Commande
     }
 
     /**
-     * @param array $credentials
+     * @param string $idmembreclient
+     * @param string $idmembreactif
+     * @param string $date
+     * @param array $list
+     * @param float $prixtotal
      * @return mixed
      */
-    public function createOneItem(array $credentials)
+    public function createCommande(string $idmembreclient, string $idmembreactif, MongoDB\BSON\UTCDateTime $date, array $list, float $prixtotal)
     {
-        return $this->m->insertOne($commandes, $credentials);
+        return $this->m->insertOne("commandes", ["id_membre_client" => $idmembreclient, "id_membre_actif" => $idmembreactif, "date" => $date, "list" => $list, "prix_total" => $prixtotal]);
     }
 
     /**
