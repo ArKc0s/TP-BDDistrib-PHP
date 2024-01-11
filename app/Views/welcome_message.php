@@ -199,6 +199,7 @@
 <header>
 
     <div class="menu">
+        <div></div>
         <ul>
             <li class="logo">
                 <a href="https://codeigniter.com" target="_blank">
@@ -231,6 +232,8 @@
 <!-- CONTENT -->
 
 <section>
+
+    <?php var_dump($items); ?>
 
     <h1>About this page</h1>
 
