@@ -1,6 +1,6 @@
 <?= $this->include('commons/header') ?>
 
-<div class="container">
+<div class="container mt-1">
     <h2>Inscription de Membre</h2>
     <form action="/membre/inscription" method="post">
         <div class="form-group">
@@ -20,7 +20,7 @@
 
         <!-- Autres champs selon besoin -->
 
-        <button type="submit" class="btn">Inscrire</button>
+        <button type="submit" class="btn btn-success">Inscrire</button>
     </form>
 </div>
 

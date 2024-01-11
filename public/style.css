@@ -7,9 +7,16 @@ body {
 }
 
 header, footer {
-    background-color: #1e1e1e; /* Arrière-plan légèrement différent pour le header/footer */
+    /* background-color: #1e1e1e; /*Arrière-plan légèrement différent pour le header/footer */
     color: #ffffff;
-    padding: 10px;
+    /* padding: 10px; */
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
 }
 
 input, select, textarea, button {
