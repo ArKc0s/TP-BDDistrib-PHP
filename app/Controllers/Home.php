@@ -13,16 +13,6 @@ class Home extends BaseController
     public function index()
     {
 
-        $data = [];
-
-        $itemModel = new ItemModel();
-
-        $data['items'] = $itemModel->getOne('item');
-
-        var_dump($data['items']);
-
-        $itemModel->createUser("Wadin", "Léo");
-
-        //return view('welcome_message', $data);
+        return view('inscription_membre');
     }
 }
