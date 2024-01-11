@@ -1,37 +1,46 @@
 <?php
 
 namespace App\Models;
+use ci4mongodblibrary\Libraries\Mongo;
 
-use CodeIgniter\Model;
 
-class Groupe extends Model
+class Groupe
 {
-    protected $table            = 'groupes';
-    protected $primaryKey       = 'numero_groupe';
-    protected $useAutoIncrement = true;
-    protected $allowedFields    = ['nom', 'ville'];
+    /*
+    * @var Mongo
+     */
+    protected $m;
 
-    // Dates
-    protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->m = new Mongo();
+    }
 
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
+    /**
+     * @param string $collection
+     * @return mixed
+     */
 
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    public function getIndexes()
+    {
+        return $this->m->listindexes('groupes');
+    }
+
+    public function createGroupe(string $numero_groupe, string $nom, Ville $ville)
+    {
+        $this->m->insertOne('groupes', ['numero_groupe' => $numero_groupe, 'nom' => $nom, 'ville' => $ville]);
+    }
+
+    public function getList(array $where = [], array $options = [], array $select = [])
+    {
+        return $this->m->options($options)->select($select)->where($where)->find('groupes')->toArray();
+    }
+
+    public function getOne(array $where = [], array $options = [], array $select = [])
+    {
+        return $this->m->options($options)->select($select)->where($where)->findOne('groupes');
+    }
 }

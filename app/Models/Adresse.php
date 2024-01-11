@@ -1,36 +1,46 @@
 <?php
 
 namespace App\Models;
+use ci4mongodblibrary\Libraries\Mongo;
 
-use CodeIgniter\Model;
 
-class Adresse extends Model
+class Adresse
 {
-    protected $table            = 'adresses';
-    protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
-    protected $allowedFields    = ['numero', 'rue', 'ville'];
+    /*
+    * @var Mongo
+     */
+    protected $m;
 
-    // Dates
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->m = new Mongo();
+    }
 
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
+    /**
+     * @param string $collection
+     * @return mixed
+     */
 
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    public function getIndexes()
+    {
+        return $this->m->listindexes('adresses');
+    }
 
+    public function createAdresse(string $numero, int $rue, Ville $ville)
+    {
+        $this->m->insertOne('adresses', ['numero' => $numero, 'rue' => $rue, 'ville' => $ville]);
+    }
+
+    public function getList(array $where = [], array $options = [], array $select = [])
+    {
+        return $this->m->options($options)->select($select)->where($where)->find('adresses')->toArray();
+    }
+
+    public function getOne(array $where = [], array $options = [], array $select = [])
+    {
+        return $this->m->options($options)->select($select)->where($where)->findOne('adresses');
+    }
 }
