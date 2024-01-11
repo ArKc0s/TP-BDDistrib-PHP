@@ -9,3 +9,4 @@ $routes->get('/', 'MembreController::inscription');
 $routes->get('/membre/inscription', 'MembreController::inscription');
 $routes->get('/groupe/creer', 'GroupeController::creer');
 $routes->get('/materiel/ajouter', 'MaterielController::ajouter');
+$routes->get('/commande', 'CommandeController::commander');

@@ -13,6 +13,7 @@
             <li><a href="/membre/inscription">Inscrire un Membre</a></li>
             <li><a href="/groupe/creer">Créer un Groupe</a></li>
             <li><a href="/materiel/ajouter">Ajouter du Matériel</a></li>
+            <li><a href="/commande">Passer une Commande</a></li>
         </ul>
     </nav>
 </header>
