@@ -2,10 +2,27 @@
 
 namespace App\Controllers;
 
+use App\Models\ItemModel;
+
+
 class Home extends BaseController
 {
-    public function index(): string
+    /**
+     * @throws \Exception
+     */
+    public function index()
     {
-        return view('welcome_message');
+
+        $data = [];
+
+        $itemModel = new ItemModel();
+
+        $data['items'] = $itemModel->getOne('item');
+
+        var_dump($data['items']);
+
+        $itemModel->createUser("Wadin", "Léo");
+
+        //return view('welcome_message', $data);
     }
 }

@@ -11,6 +11,8 @@
     },
     "require": {
         "php": "^8.3",
+        "ext-mongodb": "*",
+        "bertugfahriozer/ci4mongodblibrary": "^1.1",
         "codeigniter4/framework": "^4.0",
         "mongodb/mongodb": "^1.17"
     },
