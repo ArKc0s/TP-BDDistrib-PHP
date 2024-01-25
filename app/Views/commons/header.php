@@ -17,6 +17,7 @@
                 <li class="nav-item"><a class="nav-link" href="/groupe/creer">Créer un Groupe</a></li>
                 <li class="nav-item"><a class="nav-link" href="/materiel/ajouter">Ajouter du Matériel</a></li>
                 <li class="nav-item"><a class="nav-link" href="/commande">Passer une Commande</a></li>
+                <li class="nav-item"><a class="nav-link" href="/historique">Historique des commandes</a></li>
             </ul>
         </div>
     </nav>
