@@ -27,19 +27,20 @@ class Membre
     }
 
     /**
-     * 
+     *
      * @param string $numerogroupe
      * @param string $nom 
      * @param string $prenom
      * @param string $adresse
+     * @param string $villeID
      * @param string $email
      * @param bool $actif
      * @param string $motdepasse
      * @return mixed
      */
-    public function createMembre(string $numerogroupe, string $nom, string $prenom, string $adresse, string $email, bool $actif, string $motdepasse)
+    public function createMembre(string $numerogroupe, string $nom, string $prenom, string $adresse, string $villeID, string $email, bool $actif, string $motdepasse)
     {
-        return $this->m->insertOne("membres", ["numero_groupe" => $numerogroupe, "nom" => $nom, "prenom" => $prenom, "adresse" => $adresse, "email" => $email, "actif" => $actif, "mot_de_passe" => $motdepasse]);
+        return $this->m->insertOne("membres", ["numero_groupe" => $numerogroupe, "nom" => $nom, "prenom" => $prenom, "adresse" => $adresse, "ville" => $villeID, "email" => $email, "actif" => $actif, "mot_de_passe" => $motdepasse]);
     }
 
     /**
@@ -51,11 +52,11 @@ class Membre
      */
     public function getList( array $where = [], array $options = [], array $select = [])
     {
-        return $this->m->options($options)->select($select)->where($where)->find($membres)->toArray();
+        return $this->m->options($options)->select($select)->where($where)->find('membres')->toArray();
     }
 
     public function getOne( array $where = [], array $options = [], array $select = [])
     {
-        return $this->m->options($options)->select($select)->where($where)->findOne($membres);
+        return $this->m->options($options)->select($select)->where($where)->findOne('membres');
     }
 }
