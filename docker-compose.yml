@@ -11,7 +11,7 @@ services:
     - 27013
     ports:
       - 27013:27013
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--port", "27013", "--replSet", "rs-sh1", "--shardsvr" ]
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--port", "27013", "--replSet", "rs-1", "--shardsvr" ]
   rs-02:
     image: mongo:4.4.4
     container_name: rs-02
@@ -21,7 +21,7 @@ services:
     - 27014
     ports:
     - 27014:27014
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--port", "27014", "--replSet", "rs-sh1", "--shardsvr" ]
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--port", "27014", "--replSet", "rs-1", "--shardsvr" ]
 
 
   # rs-config
