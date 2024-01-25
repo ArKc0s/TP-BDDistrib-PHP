@@ -37,4 +37,23 @@ class Membre extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getMembre()
+    {
+        // Exemple de requête pour récupérer la liste des champs
+        $query = $this->db->query("SELECT CONCAT(nom,' ',prénom) FROM membres WHERE actif = 1");
+        
+        // Renvoie le résultat sous forme de tableau d'objets
+        return $query->getResult();
+    }
+
+    public function getClient()
+    {
+        // Exemple de requête pour récupérer la liste des champs
+        $query = $this->db->query("SELECT CONCAT(nom,' ',prénom) FROM membres");
+        
+        // Renvoie le résultat sous forme de tableau d'objets
+        return $query->getResult();
+    }
+
 }

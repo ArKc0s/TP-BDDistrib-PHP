@@ -37,4 +37,13 @@ class Matériel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getMateriel()
+    {
+        // Exemple de requête pour récupérer la liste des champs
+        $query = $this->db->query("SELECT CONCAT(modèle,' ',marque) FROM materiels");
+        
+        // Renvoie le résultat sous forme de tableau d'objets
+        return $query->getResult();
+    }
 }
