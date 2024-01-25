@@ -12,7 +12,8 @@
     <form action="traitement_commande.php" method="post">
     <div class="form-group">
         <label for="membre_commande">Membre qui passe la commande:</label>
-        <input type="text" id="membre_commande" name="membre_commande" class="form-control" required>
+        <select id="membre_commande" name="membre_commande" class="form-control" required>
+        </select>
     </div>
     <div class="form-group">
         <label for="membre_client">Client:</label>
