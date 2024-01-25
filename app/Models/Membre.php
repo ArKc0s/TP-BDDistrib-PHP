@@ -51,11 +51,11 @@ class Membre
      */
     public function getList( array $where = [], array $options = [], array $select = [])
     {
-        return $this->m->options($options)->select($select)->where($where)->find($membres)->toArray();
+        return $this->m->options($options)->select($select)->where($where)->find("membres")->toArray();
     }
 
     public function getOne( array $where = [], array $options = [], array $select = [])
     {
-        return $this->m->options($options)->select($select)->where($where)->findOne($membres);
+        return $this->m->options($options)->select($select)->where($where)->findOne("membres");
     }
 }
