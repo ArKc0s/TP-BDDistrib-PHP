@@ -47,6 +47,34 @@
         <button type="submit" class="btn btn-success">Rechercher</button>
     </form>
 
+    <?php if (!empty($commandes)) : ?>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID Commande</th>
+                    <th>ID Membre Client</th>
+                    <th>ID Membre Actif</th>
+                    <th>Date</th>
+                    <th>Liste</th>
+                    <th>Prix Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($commandes as $commande) : ?>
+                    <tr>
+                        <td><?= $commande->_id ?></td>
+                        <td><?= $commande->id_membre_client ?></td>
+                        <td><?= $commande->id_membre_actif ?></td>
+                        <td><?= $commande->date->toDateTime()->format('Y-m-d H:i:s') ?></td>
+                        <td><?= implode(', ', $commande->list) ?></td>
+                        <td><?= $commande->prix_total ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else : ?>
+        <p>Aucune commande trouvée pour les 10 dernières années.</p>
+    <?php endif; ?>
 
 </div>
 
