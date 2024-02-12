@@ -69,7 +69,6 @@ services:
     entrypoint: [ "/usr/bin/mongos", "--bind_ip_all", "--port", "27020", "--configdb", "rs-config/rs-conf-01:27017,rs-conf-02:27018" ]
 
   web:
-    container_name: ci4-web
     image: codeigniter4:latest
     ports:
       - 80:80
