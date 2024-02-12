@@ -2,7 +2,7 @@
 
 <div class="container mt-1">
     <h2>Ajout de Matériel</h2>
-    <form action="/chemin/ajout_materiel" method="post">
+    <form action="/ajout_materiel" method="post">
         <div class="form-group">
             <label for="nom_materiel">Nom du Matériel:</label>
             <input type="text" id="nom_materiel" name="nom_materiel" class="form-control">
