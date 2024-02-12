@@ -23,4 +23,12 @@ class CommandeController extends BaseController
         $data['concatenatedNamesMateriel'] = $materiels->getList();
         return view('commande_membre',$data);
     }
+    public function creationAPI()
+    {
+        $data = $this->request->getPost();
+        $commande = new Commande();
+        $commande->createCommande($data["num_groupe"], $data["nom_groupe"], $data["ville"]);
+
+        return redirect()->back();
+    }
 }

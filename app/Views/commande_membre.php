@@ -9,7 +9,7 @@
 </head>
 <body>
     <h2>Formulaire de Commande</h2>
-    <form action="traitement_commande.php" method="post">
+    <form action="/api/commande/creation" method="post">
     <div class="form-group">
         <label for="membre_commande">Membre qui passe la commande:</label>
         <select id="membre_commande" name="membre_commande" class="form-control" required>
