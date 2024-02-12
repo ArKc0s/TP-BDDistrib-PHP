@@ -13,13 +13,13 @@ class MaterielController extends BaseController
     }
 
     // TO CHECK
-    public function ajout_materiel() {
+    public function ajouter() {
             // Vérifier si le formulaire est soumis
-            if ($this->input->server('REQUEST_METHOD') == 'POST') {
+            if ($this->request->getMethod() == 'post') {
                 // Récupérer les données soumises
-                $nom_materiel = $this->input->post('nom_materiel');
-                $type = $this->input->post('type');
-                $quantite = $this->input->post('quantite');
+                $nom_materiel = $this->request->getPost('nom_materiel');
+                $type = $this->request->getPost('type');
+                $quantite = $this->request->getPost('quantite');
 
                 // Valider les données si nécessaire (à implémenter)
 
@@ -28,9 +28,11 @@ class MaterielController extends BaseController
                 $this->Materiel->inserer_materiel($nom_materiel, $type, $quantite);
 
                 // Redirection vers la même page
-                redirect('MaterielController/ajout_materiel');
+//                TODO: redirect to the same page mais réussir parce que j'y arrive pas
+                return redirect()->to('ajout_materiel');
             } else {
                 // Afficher la vue du formulaire
-                $this->load->view('ajout_materiel');
+                return view('ajout_materiel');
             }
+        }
 }
