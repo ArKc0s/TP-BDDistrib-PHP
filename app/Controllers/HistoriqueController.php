@@ -51,7 +51,7 @@ class HistoriqueController extends BaseController
         }
 
         if (!empty($actif)) {
-            $whereCondition['actif'] = $actif; // Ici, 'actif' doit correspondre au champ de la base. Peut-être un booléen ?
+            $whereCondition['id_membre_actif'] = $actif;
         }
 
         // Pour les plages de dates spécifiées par l'utilisateur, tu dois les intégrer de manière à ne pas outrepasser la limite de 10 ans
