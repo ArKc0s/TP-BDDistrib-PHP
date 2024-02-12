@@ -4,8 +4,6 @@ namespace App\Models;
 use ci4mongodblibrary\Libraries\Mongo;
 use MongoDB\BSON\UTCDateTime;
 
-use MongoDB\BSON\UTCDateTime;
-
 class Commande
 {
     /*

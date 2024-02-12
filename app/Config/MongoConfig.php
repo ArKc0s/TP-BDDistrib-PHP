@@ -11,7 +11,7 @@ class MongoConfig extends BaseConfig
         $this->dbInfo = [
             'default' => (object)[
                 'db' => 'bddistrib', //your database
-                'hostname' => "127.0.0.1",//127.0.0.1 if you use remote server you should change host address
+                'hostname' => "mongos",//127.0.0.1 if you use remote server you should change host address
                 'userName' => "admin",
                 'password' => "admin",
                 'prefix' => '',

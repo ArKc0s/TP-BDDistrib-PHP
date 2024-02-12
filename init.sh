@@ -18,5 +18,7 @@ sleep 30
 docker-compose exec mongos sh -c "mongo --port 27020 < /scripts/init-router.js"
 
 docker-compose up -d web
-echo "Démarrage de l'application web !"
+echo "Démarrage de l'application web, veuillez patienter deux minutes avant la population de la BDD"
+sleep 120
+docker-compose exec ci4-web sh -c "cd /var/www/html && php spark populate:database"
 

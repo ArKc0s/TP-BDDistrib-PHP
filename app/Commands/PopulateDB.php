@@ -9,7 +9,7 @@ use App\Models\Groupe;
 use App\Models\Materiel;
 use App\Models\Membre;
 use App\Models\Commande;
-use \MongoDB\BSON\UTCDateTime;
+use MongoDB\BSON\UTCDateTime;
 
 class PopulateDB extends BaseCommand
 {
