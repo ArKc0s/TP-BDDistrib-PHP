@@ -21,12 +21,12 @@
 
         <!-- Champ Numéro de Groupe -->
         <div class="form-group">
-            <label for="numerogroupe">Numéro de Groupe:</label>
+            <label for="numerogroupe">Groupe:</label>
             <select id="numerogroupe" name="numerogroupe" class="form-control" required>
                 <option value="">Sélectionner le groupe...</option>
                 <!-- Suppose que tu as un tableau $groupes quelque part dans ton code PHP -->
                 <?php foreach ($groupes as $groupe): ?>
-                    <option value="<?= $groupe['id'] ?>"><?= $groupe['nom'] ?></option>
+                    <option value="<?= $groupe['_id'] ?>"><?= $groupe['nom'] ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
@@ -55,7 +55,7 @@
             <select id="ville" name="ville" class="form-control" required>
                 <option value="">Sélectionner la ville...</option>
                 <?php foreach ($villes as $ville): ?>
-                    <option value="<?= $ville['id'] ?>"><?= $ville['nom'] ?></option>
+                    <option value="<?= $ville['_id'] ?>"><?= $ville['nom'] . " (" . $ville['code_postal'] . ")" ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
