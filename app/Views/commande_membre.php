@@ -13,11 +13,18 @@
     <div class="form-group">
         <label for="membre_commande">Membre qui passe la commande:</label>
         <select id="membre_commande" name="membre_commande" class="form-control" required>
+            <?php foreach ($concatenatedNames as $name): ?>
+                <option value="<?= $name['_id']; ?>"><?= $name['nom'].' '.$name['prenom']; ?></option>
+            <?php endforeach; ?>
         </select>
     </div>
     <div class="form-group">
         <label for="membre_client">Client:</label>
-        <input type="text" id="membre_client" name="membre_client" class="form-control" required>
+        <select id="membre_client" name="membre_client" class="form-control" required>
+            <?php foreach ($concatenatedNamesClient as $nameclient): ?>
+                <option value="<?= $nameclient['_id']; ?>"><?= $nameclient['nom'].' '.$nameclient['prenom']; ?></option>
+            <?php endforeach; ?>
+        </select>
     </div>
     <div class="form-group">
         <label for="date_commande">Date de Commande:</label>
@@ -25,7 +32,11 @@
     </div>
     <div class="form-group">
         <label for="list_materiel">Matériel:</label>
-        <input type="text" id="list_materiel" name="list_materiel" class="form-control" required>
+        <select id="list_materiel" name="list_materiel" class="form-control" required>
+            <?php foreach ($concatenatedNamesMateriel as $materiel): ?>
+                <option value="<?= $materiel['_id']; ?>"><?= $materiel['modele'].' '.$materiel['marque']; ?></option>
+            <?php endforeach; ?>
+        </select>
     </div>
         <input type="submit" value="Passer la commande">
     </form>
