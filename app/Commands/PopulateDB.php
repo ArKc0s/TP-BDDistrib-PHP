@@ -92,12 +92,12 @@ class PopulateDB extends BaseCommand
 
 
         // Add sample members
-        $member1Id = $this->addSampleMembre($membreModel, $group1Id, 'John', 'Doe', '123 Main St', 'Paris', 'john@example.com', true, 'password123');
-        $member2Id = $this->addSampleMembre($membreModel, $group2Id, 'Jane', 'Doe', '456 Oak St', 'Marseille', 'jane@example.com', true, 'password456');
+        $member1Id = $this->addSampleMembre($membreModel, $group1Id, 'John', 'Doe', '123 Main St', $parisId, 'john@example.com', true, 'password123');
+        $member2Id = $this->addSampleMembre($membreModel, $group2Id, 'Jane', 'Doe', '456 Oak St', $marseilleId, 'jane@example.com', true, 'password456');
 
-        $member3Id = $this->addSampleMembre($membreModel, $group3Id, 'Bob', 'Smith', '789 Elm St', 'Toulouse', 'bob@example.com', true, 'password789');
-        $member4Id = $this->addSampleMembre($membreModel, $group4Id, 'Mary', 'Smith', '012 Pine St', 'Valenciennes', 'mary@example.com', true, 'password012');
-        $member5Id = $this->addSampleMembre($membreModel, $group5Id, 'Mike', 'Jones', '345 Cedar St', 'Savigny-le-temple', 'mike@example.com', true, 'password345');
+        $member3Id = $this->addSampleMembre($membreModel, $group3Id, 'Bob', 'Smith', '789 Elm St', $toulouseId, 'bob@example.com', true, 'password789');
+        $member4Id = $this->addSampleMembre($membreModel, $group4Id, 'Mary', 'Smith', '012 Pine St', $valenciennesId, 'mary@example.com', true, 'password012');
+        $member5Id = $this->addSampleMembre($membreModel, $group5Id, 'Mike', 'Jones', '345 Cedar St', $savignyId, 'mike@example.com', true, 'password345');
 
         // Add sample orders
         $this->addSampleCommande($commandeModel, $member1Id, $member2Id, new UTCDateTime(strtotime('now')), ['ABC123'], 251.25);

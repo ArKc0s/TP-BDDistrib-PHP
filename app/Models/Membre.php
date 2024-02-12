@@ -37,9 +37,9 @@ class Membre
      * @param string $motdepasse
      * @return mixed
      */
-    public function createMembre(string $numerogroupe, string $nom, string $prenom, string $adresse, string $email, bool $actif, string $motdepasse)
+    public function createMembre(string $numerogroupe, string $nom, string $prenom, string $adresse, string $ville, string $email, bool $actif, string $motdepasse)
     {
-        return $this->m->insertOne("membres", ["numero_groupe" => $numerogroupe, "nom" => $nom, "prenom" => $prenom, "adresse" => $adresse, "email" => $email, "actif" => $actif, "mot_de_passe" => $motdepasse]);
+        return $this->m->insertOne("membres", ["numero_groupe" => $numerogroupe, "nom" => $nom, "prenom" => $prenom, "adresse" => $adresse, "ville"=>$ville, "email" => $email, "actif" => $actif, "mot_de_passe" => $motdepasse]);
     }
 
     /**
