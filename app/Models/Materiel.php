@@ -56,6 +56,7 @@ class Materiel
     {
         return $this->m->options($options)->select($select)->where($where)->findOne($materials);
     }
+<<<<<<< HEAD
 
 
 // TO CHECK
