@@ -7,6 +7,7 @@ services:
     container_name: rs-01
     volumes:
       - rs-01:/data/db
+      - ./scripts:/scripts
     expose:
       - 27013
     ports:
@@ -17,6 +18,7 @@ services:
     container_name: rs-02
     volumes:
       - rs-02:/data/db
+      - ./scripts:/scripts
     expose:
       - 27014
     ports:
@@ -32,6 +34,7 @@ services:
     container_name: rs-conf-01
     volumes:
       - rs-conf-01:/data/configdb
+      - ./scripts:/scripts
     expose:
       - 27017
     ports:
@@ -44,6 +47,7 @@ services:
     container_name: rs-conf-02
     volumes:
       - rs-conf-02:/data/configdb
+      - ./scripts:/scripts
     expose:
       - 27018
     ports:
@@ -56,6 +60,8 @@ services:
     container_name: mongos
     depends_on:
       - rs-conf-02
+    volumes:
+      - ./scripts:/scripts
     expose:
       - 27020
     ports:
