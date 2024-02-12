@@ -2,7 +2,7 @@
 
 <div class="container mt-1">
     <h2>Historique des commandes</h2>
-    <form action="/chemin/filtrageaffichage" method="post">
+    <form action="/historique" method="post">
         <div class="row">
 
         <div class="form-group">
@@ -48,7 +48,7 @@
     </form>
 
     <?php if (!empty($commandes)) : ?>
-        <table border="1">
+        <table class="table" border="1">
             <thead>
                 <tr>
                     <th>ID Commande</th>
@@ -62,12 +62,12 @@
             <tbody>
                 <?php foreach ($commandes as $commande) : ?>
                     <tr>
-                        <td><?= $commande->_id ?></td>
-                        <td><?= $commande->id_membre_client ?></td>
-                        <td><?= $commande->id_membre_actif ?></td>
-                        <td><?= $commande->date->toDateTime()->format('Y-m-d H:i:s') ?></td>
-                        <td><?= implode(', ', $commande->list) ?></td>
-                        <td><?= $commande->prix_total ?></td>
+                        <td><?= $commande['_id'] ?></td>
+                        <td><?= $commande['id_membre_client'] ?></td>
+                        <td><?= $commande['id_membre_actif'] ?></td>
+                        <td><?= $commande['date']->toDateTime()->format('Y-m-d H:i:s') ?></td>
+                        <td><?= implode(', ', iterator_to_array($commande['list'])) ?></td>
+                        <td><?= $commande['prix_total'] ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
