@@ -21,3 +21,6 @@ $routes->match(['get', 'post'], '/loginAuth', 'MembreController::loginAuth');
 $routes->post('/api/groupe/creation', 'GroupeController::creationAPI',['filter' => 'authGuard']);
 
 $routes->post('/api/materiel/ajout', 'MaterielController::ajoutAPI',['filter' => 'authGuard']);
+
+$routes->post('/api/commande/creation', 'CommandeController::creationAPIcommande');
+
