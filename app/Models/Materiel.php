@@ -23,7 +23,7 @@ class Materiel
      */
     public function getIndexes()
     {
-        return $this->m->listindexes($materials);
+        return $this->m->listindexes($materiels);
     }
 
     /**
@@ -49,31 +49,25 @@ class Materiel
      */
     public function getList( array $where = [], array $options = [], array $select = [])
     {
-        return $this->m->options($options)->select($select)->where($where)->find($materials)->toArray();
+        return $this->m->options($options)->select($select)->where($where)->find($materiels)->toArray();
     }
 
     public function getOne( array $where = [], array $options = [], array $select = [])
     {
-        return $this->m->options($options)->select($select)->where($where)->findOne($materials);
+        return $this->m->options($options)->select($select)->where($where)->findOne($materiels);
     }
 
 // TO CHECK
-    public function inserer_materiel($nom_materiel, $type, $quantite) {
-            // Préparer les données à insérer dans un tableau associatif
-            $data = array(
-                'nom_materiel' => $nom_materiel,
-                'type' => $type,
-                'quantite' => $quantite
-            );
-
-            // Insérer les données dans la table 'materiel'
-            $this->db->insert('materiel', $data);
-
-            // Vérifier si l'insertion a réussi
-            if ($this->db->affected_rows() > 0) {
-                return true; // Succès
-            } else {
-                return false; // Échec
-            }
-        }
+    public function inserer_materiel($marque, $model, $type, $prix, $idGroupe, $numeroDeSerie)
+    {
+        $materiel = [
+            "marque" => $marque,
+            "model" => $model,
+            "type" => $type,
+            "prix" => $prix,
+            "id_groupe" => $idGroupe,
+            "numero_de_serie" => $numeroDeSerie
+        ];
+        $this->m->insertOne("materiels", $materiel);
+    }
 }
