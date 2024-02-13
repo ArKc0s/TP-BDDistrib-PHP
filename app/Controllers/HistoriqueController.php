@@ -3,9 +3,11 @@
 namespace App\Controllers;
 
 use App\Models\Commande;
+use App\Models\Materiel;
 use App\Models\Membre;
 use ci4mongodblibrary\Libraries\Mongo;
 use DateTime;
+use MongoDB\BSON\ObjectId;
 use MongoDB\BSON\UTCDateTime;
 
 class HistoriqueController extends BaseController
@@ -19,6 +21,11 @@ class HistoriqueController extends BaseController
     {
         // Charger le modèle Commande
         $commandeModel = new Commande();
+        $membreModel = new Membre();
+        $materielModel = new Materiel();
+
+        $membres = $membreModel->getList();
+        $materiels = $materielModel->getList();
 
         // Récupérer les valeurs du formulaire
         $nomMatos = $this->request->getPost('nom_matos');
@@ -42,15 +49,15 @@ class HistoriqueController extends BaseController
         $whereCondition['date'] = ['$gte' => $utcDateIlYaDixAns];
 
         // Ensuite, tu ajoutes les autres conditions spécifiques
-        if (!empty($nomMatos)) {
+        if ($nomMatos != "") {
             $whereCondition['list'] = ['$in' => [$nomMatos]];
         }
 
-        if (!empty($client)) {
+        if ($client != "") {
             $whereCondition['id_membre_client'] = $client;
         }
 
-        if (!empty($actif)) {
+        if ($actif != "") {
             $whereCondition['id_membre_actif'] = $actif;
         }
 
@@ -67,7 +74,14 @@ class HistoriqueController extends BaseController
         // Récupérer la liste des commandes
         $commandes = $commandeModel->getList(where: $whereCondition);
 
+        foreach($commandes as $c) {
+            $membreActif = $membreModel->getOne(where: ['_id' => new ObjectId($c['id_membre_actif'])]);
+            $membreClient = $membreModel->getOne(where: ['_id' => new ObjectId($c['id_membre_client'])]);
+            $c['id_membre_actif'] = $membreActif['prenom'] . " " . $membreActif['nom'];
+            $c['id_membre_client'] = $membreClient['prenom'] . " " . $membreClient['nom'];
+        }
+
         // Passer les données à la vue
-        return view('history_page', ['commandes' => $commandes]);
+        return view('history_page', ['commandes' => $commandes, 'materiels' => $materiels, 'membres' => $membres]);
     }
 }

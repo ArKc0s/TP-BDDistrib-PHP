@@ -7,7 +7,12 @@
 
         <div class="form-group">
             <label for="nom_matos">Matériel:</label>
-            <input type="text" id="nom_matos" name="nom_matos" class="form-control">
+            <select type="text" id="nom_matos" name="nom_matos" class="form-control">
+                <option value="" selected>Sélectionnez un matériel</option>
+                <?php foreach($materiels as $m): ?>
+                    <option value="<?= $m['numero_de_serie'] ?>"><?= $m['numero_de_serie'] ?></option>
+                <?php endforeach; ?>
+            </select>
         </div>
 
         </div>
@@ -16,13 +21,23 @@
             <div class="col">
                 <div class="form-group">
                     <label for="client">Membre Client:</label>
-                    <input type="text" id="client" name="client" class="form-control">
+                    <select type="text" id="client" name="client" class="form-control">
+                        <option value="" selected>Sélectionnez un membre</option>
+                        <?php foreach($membres as $m): ?>
+                            <option value="<?= $m['_id'] ?>"><?= $m['prenom'] . " " . $m['nom'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label for="actif">Membre Actif:</label>
-                    <input type="text" id="actif" name="actif" class="form-control">
+                    <select type="text" id="actif" name="actif" class="form-control">
+                        <option value="" selected>Sélectionnez un membre</option>
+                        <?php foreach($membres as $m): ?>
+                            <option value="<?= $m['_id'] ?>"><?= $m['prenom'] . " " . $m['nom'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
             </div>
         </div>
@@ -52,8 +67,8 @@
             <thead>
                 <tr>
                     <th>ID Commande</th>
-                    <th>ID Membre Client</th>
-                    <th>ID Membre Actif</th>
+                    <th>Membre Client</th>
+                    <th>Membre Actif</th>
                     <th>Date</th>
                     <th>Liste</th>
                     <th>Prix Total</th>
