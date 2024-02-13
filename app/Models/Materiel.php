@@ -23,7 +23,7 @@ class Materiel
      */
     public function getIndexes()
     {
-        return $this->m->listindexes("materials");
+        return $this->m->listindexes("materiels");
     }
 
     /**
@@ -49,12 +49,12 @@ class Materiel
      */
     public function getList( array $where = [], array $options = [], array $select = [])
     {
-        return $this->m->options($options)->select($select)->where($where)->find("materials")->toArray();
+        return $this->m->options($options)->select($select)->where($where)->find("materiels")->toArray();
     }
 
     public function getOne( array $where = [], array $options = [], array $select = [])
     {
-        return $this->m->options($options)->select($select)->where($where)->findOne("materials");
+        return $this->m->options($options)->select($select)->where($where)->findOne("materiels");
     }
 
 // TO CHECK
