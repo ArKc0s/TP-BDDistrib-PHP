@@ -1,0 +1,39 @@
+/* style.css - Thème sombre */
+
+body {
+    background-color: #121212; /* Arrière-plan sombre */
+    color: #ffffff; /* Texte clair */
+    font-family: 'Arial', sans-serif;
+}
+
+header, footer {
+    /* background-color: #1e1e1e; /*Arrière-plan légèrement différent pour le header/footer */
+    color: #ffffff;
+    /* padding: 10px; */
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+input, select, textarea, button {
+    background-color: #2e2e2e;
+    color: #ffffff;
+    border: none;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+button {
+    background-color: #4e4e4e; /* Boutons légèrement plus clairs */
+    cursor: pointer;
+}
+
+form {
+    margin: 20px 0;
+}
+
+/* Ajouter des styles supplémentaires selon les besoins */
