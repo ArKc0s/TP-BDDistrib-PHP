@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use ci4mongodblibrary\Libraries\Mongo;
+use DateTime;
 use MongoDB\BSON\UTCDateTime;
 
 class Commande
@@ -24,7 +25,7 @@ class Commande
      */
     public function getIndexes()
     {
-        return $this->m->listindexes($commandes);
+        return $this->m->listindexes("commandes");
     }
 
     /**
@@ -50,6 +51,22 @@ class Commande
     public function getList( array $where = [], array $options = [], array $select = [])
     {
         return $this->m->options($options)->select($select)->where($where)->find("commandes")->toArray();
+    }
+
+    public function getLastTenYears()
+    {
+        // Calcul de la date d'il y a 10 ans en millisecondes pour UTCDateTime
+        $dateIlYaDixAns = new DateTime();
+        $dateIlYaDixAns->modify('-10 years');
+        $timestampIlYaDixAns = $dateIlYaDixAns->getTimestamp() * 1000; // Conversion en millisecondes
+
+        // Création d'un objet UTCDateTime avec ce timestamp
+        $utcDateIlYaDixAns = new UTCDateTime($timestampIlYaDixAns);
+
+        // Ajout du critère de date dans $where
+        $where['date'] = ['$gte' => $utcDateIlYaDixAns];
+
+        return $this->m->options([])->select([])->where($where)->find("commandes")->toArray();
     }
 
     public function getOne( array $where = [], array $options = [], array $select = [])

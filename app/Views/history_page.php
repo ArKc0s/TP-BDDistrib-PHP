@@ -2,12 +2,17 @@
 
 <div class="container mt-1">
     <h2>Historique des commandes</h2>
-    <form action="/chemin/filtrageaffichage" method="post">
+    <form action="/historique" method="post">
         <div class="row">
 
         <div class="form-group">
             <label for="nom_matos">Matériel:</label>
-            <input type="text" id="nom_matos" name="nom_matos" class="form-control">
+            <select type="text" id="nom_matos" name="nom_matos" class="form-control">
+                <option value="" selected>Sélectionnez un matériel</option>
+                <?php foreach($materiels as $m): ?>
+                    <option value="<?= $m['numero_de_serie'] ?>"><?= $m['numero_de_serie'] ?></option>
+                <?php endforeach; ?>
+            </select>
         </div>
 
         </div>
@@ -16,13 +21,23 @@
             <div class="col">
                 <div class="form-group">
                     <label for="client">Membre Client:</label>
-                    <input type="text" id="client" name="client" class="form-control">
+                    <select type="text" id="client" name="client" class="form-control">
+                        <option value="" selected>Sélectionnez un membre</option>
+                        <?php foreach($membres as $m): ?>
+                            <option value="<?= $m['_id'] ?>"><?= $m['prenom'] . " " . $m['nom'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label for="actif">Membre Actif:</label>
-                    <input type="text" id="actif" name="actif" class="form-control">
+                    <select type="text" id="actif" name="actif" class="form-control">
+                        <option value="" selected>Sélectionnez un membre</option>
+                        <?php foreach($membres as $m): ?>
+                            <option value="<?= $m['_id'] ?>"><?= $m['prenom'] . " " . $m['nom'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
             </div>
         </div>
@@ -48,12 +63,12 @@
     </form>
 
     <?php if (!empty($commandes)) : ?>
-        <table border="1">
+        <table class="table" border="1">
             <thead>
                 <tr>
                     <th>ID Commande</th>
-                    <th>ID Membre Client</th>
-                    <th>ID Membre Actif</th>
+                    <th>Membre Client</th>
+                    <th>Membre Actif</th>
                     <th>Date</th>
                     <th>Liste</th>
                     <th>Prix Total</th>
@@ -62,12 +77,12 @@
             <tbody>
                 <?php foreach ($commandes as $commande) : ?>
                     <tr>
-                        <td><?= $commande->_id ?></td>
-                        <td><?= $commande->id_membre_client ?></td>
-                        <td><?= $commande->id_membre_actif ?></td>
-                        <td><?= $commande->date->toDateTime()->format('Y-m-d H:i:s') ?></td>
-                        <td><?= implode(', ', $commande->list) ?></td>
-                        <td><?= $commande->prix_total ?></td>
+                        <td><?= $commande['_id'] ?></td>
+                        <td><?= $commande['id_membre_client'] ?></td>
+                        <td><?= $commande['id_membre_actif'] ?></td>
+                        <td><?= $commande['date']->toDateTime()->format('Y-m-d H:i:s') ?></td>
+                        <td><?= implode(', ', iterator_to_array($commande['list'])) ?></td>
+                        <td><?= $commande['prix_total'] ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

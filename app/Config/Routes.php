@@ -12,7 +12,7 @@ $routes->get('/membre/deconnexion', 'MembreController::deconnexion',['filter' =>
 $routes->get('/groupe/creer', 'GroupeController::creer',['filter' => 'authGuard']);
 $routes->get('/materiel/ajouter', 'MaterielController::creer',['filter' => 'authGuard']);
 $routes->get('/commande', 'CommandeController::commander',['filter' => 'authGuard']);
-$routes->get('/historique', 'HistoriqueController::search',['filter' => 'authGuard']);
+$routes->match(['get', 'post'], '/historique', 'HistoriqueController::search',['filter' => 'authGuard']);
 
 
 $routes->match(['get', 'post'], '/store', 'MembreController::store');
