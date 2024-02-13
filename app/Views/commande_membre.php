@@ -32,7 +32,7 @@
     </div>
     <div class="form-group">
         <label for="list_materiel">Matériel:</label>
-        <select id="list_materiel" name="list_materiel" class="form-control" required>
+        <select multiple id="list_materiel" name="list_materiel[]" class="form-control" required>
             <?php foreach ($concatenatedNamesMateriel as $materiel): ?>
                 <option value="<?= $materiel['_id']; ?>"><?= $materiel['modele'].' '.$materiel['marque']; ?></option>
             <?php endforeach; ?>

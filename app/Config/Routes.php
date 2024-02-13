@@ -16,3 +16,5 @@ $routes->get('/historique', 'HistoriqueController::search',['filter' => 'authGua
 $routes->match(['get', 'post'], '/store', 'MembreController::store');
 $routes->match(['get', 'post'], '/loginAuth', 'MembreController::loginAuth');
 
+$routes->post('/api/commande/creation', 'CommandeController::creationAPIcommande');
+

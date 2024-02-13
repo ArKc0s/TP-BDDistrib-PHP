@@ -24,7 +24,7 @@ class Commande
      */
     public function getIndexes()
     {
-        return $this->m->listindexes($commandes);
+        return $this->m->listindexes("commandes");
     }
 
     /**
