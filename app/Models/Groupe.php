@@ -57,4 +57,9 @@ class Groupe
     {
         return $this->m->options($options)->select($select)->where($where)->findOne('groupes');
     }
+
+    public function getLastNum()
+    {
+        return $this->m->options(['sort' => ['numero_groupe' => -1]])->select([])->where([])->findOne('groupes')["numero_groupe"];
+    }
 }

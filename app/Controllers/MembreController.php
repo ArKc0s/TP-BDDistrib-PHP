@@ -3,7 +3,9 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\Groupe;
 use App\Models\Membre;
+use App\Models\Ville;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class MembreController extends BaseController
@@ -23,8 +25,10 @@ class MembreController extends BaseController
 
     public function inscription()
     {
-        $data['villes'] =  [['id' => 0, 'nom' => 'test']];
-        $data['groupes'] =  [['id' => 0, 'nom' => 'test']];
+        $groupe = new Groupe();
+        $ville = new Ville();
+        $data['villes'] =  $ville->getList();;
+        $data['groupes'] =  $groupe->getList();
         return view('inscription_membre', $data);
     }
 
