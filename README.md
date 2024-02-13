@@ -61,7 +61,7 @@ We have implemented few functions to test the link with the database and the con
 
 ## Database
 Here is a scheme of our collections and the links between them.
-![Diagramme sans nom.drawio.png](..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2FDownloads%2FDiagramme%20sans%20nom.drawio.png)
+![img.png](img.png)
 
 ## Team
 [Léo Wadin](https://github.com/ArKc0s)<br>
